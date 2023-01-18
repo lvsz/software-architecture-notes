@@ -1,7 +1,9 @@
 project/
 target/
+resources/
 .bloop/
+.bsp/
+.cache/
 .metals/
 .vscode/
-.bsp/
 *.swp
