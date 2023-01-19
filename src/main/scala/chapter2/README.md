@@ -19,7 +19,7 @@ ______
 * ...
 
  **_In order to pass off as an architecture, it is crucial to describe the relations represented between elements._**
-* Do not leave functionality and behavior of corresponding elements up to imagination.
+* Do not leave functionality and behaviour of corresponding elements up to imagination.
 * A structure is architectural if it **supports reasoning** about the **system's properties**.
 * Reasoning should be about an attribute important to a **stakeholder**:
   - **functionality** achieved by the system
