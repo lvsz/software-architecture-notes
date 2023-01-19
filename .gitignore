@@ -1,6 +1,5 @@
 project/
 target/
-resources/
 .bloop/
 .bsp/
 .cache/
