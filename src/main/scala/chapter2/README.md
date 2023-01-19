@@ -1,5 +1,5 @@
 # 2. Documenting Architectures
-___________________________
+______
 
 ## What is software architecture?
 > _The architecture of a software system is the **set of structures** needed to **reason about** the system, which comprise **software elements**, **relations** among them, and externally visible **properties** of both._
@@ -113,71 +113,14 @@ ___________________________
   - Determining network loads during various usage scenarios
   - Determinging appropriate network security zoning
 
-## Categories of architectural structures and their views
-* **Module structures**
-  - show how a system is to be structured as a set of **code or data units** (modules) that have to be constructed or procured
-  - static structures
-  - focuses on the structure & implementation of the software: packages, classes, functions, etc.
-    - e.g. a single `client` class
-* **Component-and-connector structures**
-- show how a system is structured as a set of **code or data units** (modules) that have to be constructed or procured
-  - dynamic structures
-  - focuses on runtime configuration, interaction and dependencies between elements
-    - e.g. multiple `client` instances
-* **Allocation structures**
-  - show how the system will **relate to non-software structures in its environment**
-  - this can include:
-    - servers
-    - CPUs
-    - file systems
-    - networks
-    - dev teams
-  - _"Where are we going to run our components?"_
+### Next: [Structures][stc.md]
+### Other:
+* [Module structures][mod.md]
+* [Component-and-connector structures][c&c.md]
+* [Allocation structures][all.md]
 
 
-### Modules vs. Components
-Generally, modules & components have a many-to-many relation, i.e. one or more modules can correspond to one or more components, and a one or more components can correspond to one or more module.
-
-#### **Modules**:
-* A module is an **implementation _unit_** that provides a coherent set of responsibilities.
-* A **responsibility** is a general statement about an architecture element.
-* Responsibilities include:
-  - actions to perform
-  - knowledge to maintain
-  - decisions to make
-  - the role it plays in achieving the system's overall quality attributes or functionality
-* Focus on static, interchangable units in a structure's design
-
-#### **Components**:
-* Components are the **principal computational _elements_** and data stores that execute in a sytem.
-* Components **interact** with each other at **runtime** to carry out the system's function,
-* Focus on dynamic, connected elements in a structure's operation
-
-### Module structures
-#### Elements
-* Modules:  
-  implementation units that provide a coherent set of responsibilities
-#### Relations
-* is-a-part-of:
-  - part/whole relationship
-  - between submodule & aggregate module
-* depends-on:
-  - dependency relationship between modules
-  - specific module views elaborate on the nature of the dependency
-* is-a:
-  - generalisation/specialisation relationship
-  - between a child module (more specialised) and a parent module (more general)
-* ...
-#### Constraints
-* Specific module views may impose particular topological constraints
-  - e.g. limitations on the visibility between modules
-
-### Documenting module properties
-* Name
-  - can denote module's role
-  - can reflect position in decomposition hierarchy
-* Mapping to source code units
-  - e.g. module Account: IAccount.scala, AccountImpl.scala, AccountOrmMapping.xml, ...
-* Visibility of interfaces
-  - submodules can be **encapsulated**, their interfaces are only used by the submodules in the enclosing parent module
-  - submodules can be **selectively exposed**, with the parent module exposing a subset of its submodules' interfaces
+[stc.md]: ./structures/README.md
+[mod.md]: ./structures/Modules.md
+[c&c.md]: ./structures/C&C.md
+[all.md]: ./structures/Allocation.md
