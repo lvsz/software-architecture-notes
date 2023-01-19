@@ -50,7 +50,34 @@ TODO
 
 
 ## Dependency Inversion: from Layer to Onion
-![layers](../../resources/module-layers.svg)
+
+Traditional procedural interpretation:  
+call into a lower layer using the interface declared there.
+* dependency direction is _downwards_ **from high-level layers at the top to low-level layers at the bottom**
+* high-level layers (e.g. for business logic) depend on low-level utilitarian layers (e.g. for persistence)
+* **changes to the lower-level layers require running integration tests again**
+   
+  ![layers](../../resources/module-layers.svg)
+
+* API Layer:
+  - public interface to the domain
+* Domain Layer: 
+  - domain model implementation
+* Infrastructure Layer: 
+  - frameworks, integration with other services, etc.
+
+### OO implementation with dependency inversion:
+High-level layer declares interface implemented by low-level layer
+
+![onion](../../resources/module-onion.svg)
+* coupling direction is **inwards**:  
+  from outer low-level layer to inner high-level layer 
+* outer layers depend on inner layers,  
+  as **_they implement the interfaces declared there_**
+* **changes to outer layers do not affect inner layers,**  
+ **the inner layers do not know about the outer layers**
+* **inner layers can be compiled, run, and tested separately from the infrastructure layers**
+  - e.g. swap an outer layer for a mock when testing an inner layer
 
 ## Aspect-Oriented Pattern
 ### Overview
