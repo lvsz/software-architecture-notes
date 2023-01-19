@@ -48,40 +48,9 @@ TODO
 * Layers contribute a performance penalty.
 ---
 
+
 ## Dependency Inversion: from Layer to Onion
-<svg width="120" height="140"  >
-  <style>
-    rect { fill: white;
-           width: 100%;
-           height: 30px;
-           opacity: 0.7;
-           stroke: black;
-           stroke-width: 2; }
-    text { text-anchor: middle; }
-    .mod { font-size: 16px; }
-    .cnc { font-size: 14px; }
-    .arr { font-size: 26px; }
-  </style>
-  <rect style="height:140;fill:gray;opacity:0.5" />
-  <svg x="5" y="5" width="110" height="130" > 
-    <rect />
-    <rect y="50px" />
-    <rect y="100px" />
-    <svg height="50" viewbox="-55,0 110,50" >
-      <text class="mod" y="21" >API</text>
-      <text class="arr" y="48" >&darr;</text>
-      <text class="cnc" x="22" y="44">users</text>
-    </svg>
-    <svg y="50" height="50" viewbox="-55,0 110,50" >
-      <text class="mod" y="21" >Domain</text>
-      <text class="arr" y="48" >&darr;</text>
-      <text class="cnc" x="22" y="44">users</text>
-    </svg>
-    <svg y="100" height="50" viewbox="-55,0 110,50" >
-      <text class="mod" y="21" >Infrastructure</text>
-    </svg>
-  </svg>
-</svg>
+![layers](../../resources/module-layers.svg)
 
 ## Aspect-Oriented Pattern
 ### Overview

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+  
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="120"
+   height="140"
+   style="font-family:Arial,Helvetica,sans-serif">
+  <defs>
+    <rect id="modbg"
+      width="110" height="30"
+      fill="white" opacity="0.7"
+      stroke="black" stroke-width="2" />
+    <polygon id="darr"
+      points="0,18 5,11 1,14 1,0 -1,0 -1,14 -5,11"
+      transform="translate(0,30)" />
+    <text id="usr" transform="translate(22,44)" font-size="14">users</text>
+  </defs>
+  <rect height="140" width="120" opacity="0.5" fill="gray" />
+  <g transform="translate(5, 5)" style="text-anchor:middle;">
+    <use href="#modbg" />
+    <g transform="translate(55, 0)">
+      <text font-size="16" y="21">API</text>
+      <use href="#darr" />
+      <use href="#usr" />
+    </g>
+    <g transform="translate(0, 50)">
+      <use href="#modbg" />
+      <g transform="translate(55, 0)">
+        <text font-size="16" y="21" >Domain</text>
+        <use href="#darr" />
+        <use href="#usr" />
+      </g>
+      <g transform="translate(0, 50)">
+        <use href="#modbg" />
+        <g transform="translate(55, 0)">
+          <text font-size="16" y="21" >Infrastructure</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
