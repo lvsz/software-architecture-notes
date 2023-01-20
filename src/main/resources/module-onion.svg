@@ -21,13 +21,13 @@
      transform="translate(16,8)" />
   </g>
   <g transform="translate(100, 100)" style="text-anchor:middle;">
-    <text y="-46" >API</text>
+    <text y="-46">API</text>
     <text y="-2">Domain</text>
-    <text y="12" >Model</text>
-    <text y="-76" >Infrastructure</text>
+    <text y="12">Model</text>
+    <text y="-76">Infrastructure</text>
     <text y="-76" transform="rotate(-280)">Messaging</text>
     <text y="88" transform="rotate(-45)">Tests</text>
-    <text y="88" >Persistence</text>
+    <text y="88">Persistence</text>
     <text y="88" transform="rotate(45)">REST</text>
     <text y="-76" transform="rotate(280)">Presentation</text>
   </g>
