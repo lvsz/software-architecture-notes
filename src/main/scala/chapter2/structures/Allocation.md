@@ -14,6 +14,14 @@ Allocation structures show the **relationship between the software elements** an
 ### Constraints
 *  Vary by view
 
+## Example allocation views
+### Deployment view
+![Deployment view][img1]
+ ATIA-M: U.S. Army Training Information Architecture-Migrated
+### Install view
+![Install view][img1]
+
+TODO
 
 ## Next: 
 ## Other
@@ -23,6 +31,8 @@ Allocation structures show the **relationship between the software elements** an
 * [Component-and-connector structures][c&c.md]
 
 
+[img1]: ../../../../../resources/img/deployment-view.png
+[img2]: ../../../../../resources/img/install-view.png
 [ch2.md]: ../README.md
 [stc.md]: ./README.md
 [mod.md]: ./Modules.md

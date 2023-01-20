@@ -25,8 +25,8 @@ separately developed additions)
 
 Extensions in dual dimensions still require some overhead, but are no longer impossible, like in other OO languages
 - merging extensions in primary dimensions through *shallow mixin composition*
-  - new trait can be declared solely using other traits
-  - no need for a body
+  * new trait can be declared solely using other traits
+  * no need for a body
 - merging extensions in secondary dimensions through *deep mixin composition*
-  - first the toplevel traits have to be mixed
-  - then their subtraits need to be mixed in the body
+  * first the toplevel traits have to be mixed
+  * then their subtraits need to be mixed in the body
