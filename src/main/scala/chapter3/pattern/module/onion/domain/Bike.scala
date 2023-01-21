@@ -1,4 +1,4 @@
-package domain
+package chapter3.pattern.module.onion.domain
 
 sealed abstract class Bike:
   enum State:

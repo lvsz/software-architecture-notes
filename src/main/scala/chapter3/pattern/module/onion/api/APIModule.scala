@@ -1,6 +1,6 @@
-package api
+package chapter3.pattern.module.onion.api
 
-import domain.DomainModule
+import chapter3.pattern.module.onion.domain.DomainModule
 
 trait APIModule:
   this: DomainModule =>

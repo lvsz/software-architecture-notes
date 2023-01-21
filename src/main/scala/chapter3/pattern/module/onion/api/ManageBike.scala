@@ -1,7 +1,6 @@
-package api
+package chapter3.pattern.module.onion.api
 
-import api.ManageUser
-import domain.{Bike, BikeRepository, User, UserRepository}
+import chapter3.pattern.module.onion.domain.{Bike, BikeRepository, User, UserRepository}
 
 case class ManageBike(
     userRepository: UserRepository,

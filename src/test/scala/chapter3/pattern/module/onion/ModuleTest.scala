@@ -1,12 +1,10 @@
 package chapter3.pattern.module.onion
 
 import org.scalatest.flatspec.AnyFlatSpec
-import infrastructure.{InfrastructureModule, UI}
-import domain.{NormalBike, ElectricBike, RoadBike}
-import api.APIModule
-import domain.DomainModule
-
-// import chapter3.pattern.module.onion.infrastructure.UI
+import chapter3.pattern.module.onion.infrastructure.{InfrastructureModule, UI}
+import chapter3.pattern.module.onion.domain.{NormalBike, ElectricBike, RoadBike}
+import chapter3.pattern.module.onion.api.APIModule
+import chapter3.pattern.module.onion.domain.DomainModule
 
 class ModuleTest
     extends AnyFlatSpec

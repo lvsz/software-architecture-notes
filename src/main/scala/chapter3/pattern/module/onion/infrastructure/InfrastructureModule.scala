@@ -1,7 +1,11 @@
-package infrastructure
+package chapter3.pattern.module.onion.infrastructure
 
-import api.{APIModule, ManageUser, ManageBike}
-import domain.{DomainModule, UserRepository, BikeRepository}
+import chapter3.pattern.module.onion.api.{APIModule, ManageUser, ManageBike}
+import chapter3.pattern.module.onion.domain.{
+  DomainModule,
+  UserRepository,
+  BikeRepository
+}
 
 trait InfrastructureModule:
   this: APIModule with DomainModule =>

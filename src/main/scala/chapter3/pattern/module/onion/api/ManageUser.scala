@@ -1,6 +1,6 @@
-package api
+package chapter3.pattern.module.onion.api
 
-import domain.{User, UserRepository}
+import chapter3.pattern.module.onion.domain.{User, UserRepository}
 
 case class ManageUser(userRepository: UserRepository):
   def createUser(name: String, balance: Int) =
