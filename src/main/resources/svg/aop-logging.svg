@@ -33,7 +33,7 @@
   </defs>
   <rect width="551" height="410" fill="rgba(255,255,255,0.5)" />
   <g transform="matrix(0.75 0 0 0.75 20 10)">
-    <g transform="translate(275,140)">
+    <g transform="translate(275.88,140)">
       <use href="#mod" />
       <text x="80" y="22">Tracing aspect</text>
     </g>
@@ -67,8 +67,9 @@
       <g transform="translate(20,125)">
         <path fill="white"
               stroke="black" 
+              stroke-linejoin="bevel"
               d="M 0 0
-                 L -25,-30 -25,-10 -125,-10 -125,10 -25,10 -25,30
+                 L -25,-30 -25,-10 -124.12,-10 -124.12,10 -25,10 -25,30
                  Z" />
         <text x="-62.5" y="-20">log()</text>
       </g>
