@@ -84,8 +84,6 @@ ______
 5. **Rationale**:  
     explains why the design refllected in the view came to be, e.g. justification for the choice of a patterns
 
-[img1]: ../../../../resources/img/template-for-a-view.png
-
 
 ## Stakeholders
 - Architect
@@ -126,3 +124,5 @@ TODO see: Conway's law
 [mod.md]: ./structures/Modules.md
 [c&c.md]: ./structures/C&C.md
 [all.md]: ./structures/Allocation.md
+
+[img1]: ../../resources/png/template-for-a-view.png

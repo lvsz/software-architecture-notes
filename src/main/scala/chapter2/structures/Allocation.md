@@ -31,9 +31,10 @@ TODO
 * [Component-and-connector structures][c&c.md]
 
 
-[img1]: ../../../../../resources/img/deployment-view.png
-[img2]: ../../../../../resources/img/install-view.png
 [ch2.md]: ../README.md
 [stc.md]: ./README.md
 [mod.md]: ./Modules.md
 [c&c.md]: ./C&C.md
+
+[img1]: ../../../resources/png/deployment-view.png
+[img2]: ../../../resources/png/install-view.png

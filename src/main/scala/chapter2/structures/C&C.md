@@ -45,7 +45,6 @@ Component & connector views are useful to document everything related to runtime
 
 When using a non-standardised diagram for a view, it is crucial add a key, denoting the semantics of the diagram.
 
-[img2]: ../../../../../resources/img/c-and-c-view-key.png
 
 ## Example uses of c&c views
 ### Communication
@@ -69,3 +68,5 @@ When using a non-standardised diagram for a view, it is crucial add a key, denot
 [stc.md]: ./README.md
 [mod.md]: ./Modules.md
 [all.md]: ./Allocation.md
+
+[img2]: ../../../resources/png/c-and-c-view-key.png
