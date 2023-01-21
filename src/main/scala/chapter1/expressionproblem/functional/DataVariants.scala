@@ -45,7 +45,7 @@ object DataVariants:
     trait NegVisitor[T] extends Visitor[T]:
       def visit(e: Neg): T
     trait NegEvalVisitor extends NegVisitor[Int]:
-      // self type required as AddEvalVisitor & AddVisitor are
+      // self type required as NegEvalVisitor & NegVisitor are
       // supertypes of VisitorType, not subtypes
       this: VisitorType[Int] =>
       def visit(e: Neg): Int = -e.t.accept(this)
