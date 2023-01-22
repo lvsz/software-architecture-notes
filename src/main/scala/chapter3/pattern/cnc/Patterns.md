@@ -19,6 +19,95 @@
     - by disguising remote procedure calls as local ones, the user might not account for any issues associated with communicating over a network, e.g. latency and network failure.
     - cf. REST calls which are unmistakable for local calls when used by developers, and are more likely to get appropriate error and exception handling.
 
+## Model-View-Controller
+
+## Service-Oriented Architecture Pattern
+
+- Overview:
+  ----
+  - Computation happens through cooperation of components that provide and/or consume services over a network.
+
+- Elements:
+  ----
+  - **Components**:
+    - Service providers, provide services through public interfaces, often accompanied by a Service Level Agreement (SLA)
+    - Service consumers, invoking services directly or indirectly
+    - Registry of services, providers can register their service, consumers can discover services at runtime
+    - Orchestration server, coordinates interactions between consumers & providers, based on languages for business processes & workflows
+  - **Connectors**:
+    - SOAP connector, connector using the Simple Object Access Protocol for synchronous communication between web services, typically over HTTP, ports using it often described in WSDL (Web Service Description Language)
+    - REST connector, relies on basic request/reply operations of the HTTP protocol
+    - Asynchronous messaging connector, offers point-to-point or publish-subscribe asynchronous message exchanges
+  
+- Relations:
+  ----
+  - Attachment of the different kinds of components available to the respective connectors
+
+- Constraints:
+  ----
+  - Consumers are connected to providers, possibly through an intermediary (Enterprise service bus, registry, orchestration server)
+  - Providers may also be consumers
+  - ESBs lead to a hub-and-spoke topology
+  - Specific SOA patterns impose additional constraints
+
+- **Strengths**
+  ----
+  - Allowing interoperability of components distributed on different platforms across the Internet
+  - Integrating legacy systems
+  - Allowing dynamic configuration
+- **Weaknesses**
+  ----
+  - Typically complex to build
+  - No control over evolution of independent services
+  - Performance overhead associated with middleware
+  - Services may be performance bottlenecks, often no performance guarantees
+
+
+## Micro-services
+
+Service-oriented pattern, but what if services weren't just 3rd party, but also used internally. This benefits the agility & scalability of a service, compared to a monolithic approach.
+
+### Micro-services architecture
+![micro-service-model][ms1]  
+- Each service provides and consumes functionality as a mini-application on its own
+
+### REST calls
+![micro-service-rest][ms2]  
+- synchronous request/response cycle of HTTP
+- exposes business objects as resources at a URI
+- four primary HTTP operation on those resourches:
+  - POST
+  - GET
+  - PUT
+  - DELETE
+- not prone to fallacy of transparent distribution
+  - though blocking calls do require protection against unresponsive services to prevent cascading failures, e.g. in the form a circuit breaker, monitoring how quickly a reponse comes back, breaking the circuit if there's a timeout
+
+### Messaging
+- **asynchronicity**
+  - sender does not have to wait for the receiver to respond to a message
+  - requires a _send-and-forget_ approach
+    - request sent contains a `MessageID` and `ReturnAddress`
+    - reply sent uses request's `MessageID` as a `CorrelationID`, so that receiver knows what this is a reply to
+- **variable timing**
+  - messaging system queues up requests until the receiver is ready to process them
+  - sender & receiver can produce/consume messages at their own pace
+
+### Containerisation
+- service executables and dependencies are packaged into a container image
+  - handles deployment dependencies rather than development dependencies
+- multiple containers can be spun up from a single image
+- previously virtualisation was used, which virtualised an entire hardware system
+- containerisation reuses its hosts kernel, making it more efficient
+- **infrastructure as code**
+
+- Cloud-native applications
+  ----
+  - operate at **global scale**
+  - yet remain **responsive**
+  - are **resilient** against failures
+  - are **elastic** under load variations
+
 ## Concurrent Actor Programming
 
 Actors are self-contained, independent components that communicate by asynchronous messaging.
@@ -56,3 +145,8 @@ Actors provide strong encapsulation
   - addresses (`ActorRefs`) are location-transparent
     - local & remote messages both sent using the `!` messages operator
     - fallacy of location transparency not applicable, as messaging is asynchronous regardless, _"fire & forget"_, actors won't block the rest of the system due to network errors
+
+
+
+[ms1]: ../../../../resources/png/micro-services.png
+[ms2]: ../../../../resources/png/micro-service-rest.png
