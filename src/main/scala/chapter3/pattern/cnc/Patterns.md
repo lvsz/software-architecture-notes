@@ -147,6 +147,32 @@ Actors provide strong encapsulation
     - fallacy of location transparency not applicable, as messaging is asynchronous regardless, _"fire & forget"_, actors won't block the rest of the system due to network errors
 
 
+## Publish-Subscribe Pattern
+
+- Context
+  ----
+  - There are **independent producers & consumers of data** which must interact.
+  - The precise **number and nature** of these are **not predetermined** or fixed, nor is the data they share.
+- Problem
+  ----
+  - How to create integration mechanisms that allow them to transmit messages while being **unaware of each other's identity or existence**?
+- Solution
+  ----
+  - Interact via **announced messages**, or **events**.
+    - Components may **subscribe** to a set of events.
+    - **Publisher** components place events on the bus by **announcing** them.
+    - The connector delivers those events to subscriber components that have **registered an interest in those events**.
+  - Analog with the _observer pattern_, but on an architectural rather than design level.
+- **Strengths**
+  ----
+  - Isolates producers from consumers in both space (no need to who or how many) and time (no need to wait for them to process it)
+- **Weaknesses**
+  ----
+  - Typically increases latency and has a negative effect on scalability & predictability of message delivery time.
+    - Bad fit for systems with real-time deadline constraints.
+  - Less control over ordering of messages, no guarantee they get delivered.
+    - Bad fir for complex interactions where shared state is critical.
+
 
 [ms1]: ../../../../resources/png/micro-services.png
 [ms2]: ../../../../resources/png/micro-service-rest.png
