@@ -117,7 +117,7 @@ Two main categories of _pointcut languages_:
 ![x-cutting concerns](../../resources/svg/conventional-logging.svg)
 
 #### Aspect-oriented logging:
-![x-cutting concerns](../../resources/svg/aop-logging.svg)
+![x-cutting concerns](../../resources/svg/aop-logging.svg)  
 Tracing aspect inserts logging functionality through means of _advice code_.
 
 > _"ThERe aRe OnlY LiKE fiVE CaNONiCaL asPecTs:"_
@@ -149,3 +149,25 @@ AOP possible in Scala using only built-in functionality. Possible because classe
     - Advice code might get composed with methods unaware this could happen.
     - Having a part of the code base affect the behaviour of other modules in possibly unexpected ways can make it hard to maintain.
     - cf. fragile base class problem, where subclasses might get broken by assumption made about their super class.
+
+## Distributed systems
+
+### Resilience against delivery failures
+
+Rendering messages first-class entities enables implementing delivery guarantees:
+
+- **at-most-once delivery**:
+  - default strategy for Akka
+  - no state required at sender nor receiver
+  - message will be delivered [0,1] times
+- **at-least-once delivery**:
+  - keep state at sender to ensure message will be resent until acknowledged by recipient
+  - will most likely require a timer
+  - simply checking whether message arrived in the mailbox is inadequate, errors may still occur afterwards
+    - each implementation has different risks & needs, so default implementation can be given by a framework
+  - message will be delivered [1,∞] times, as acknowledgement messages may get lost
+- **exactly-once delivery**:
+  - like previous, but additional requirement for receiver to make sure only first delivery gets processed
+  - if receiver gets a message it already processed & acknowledged, assume acknowledgement message got lost, and simply resend acknowledgement message
+  - message will be delivered exactly 1 time
+    - assuming eventual availability of a channel between sender & recipient
