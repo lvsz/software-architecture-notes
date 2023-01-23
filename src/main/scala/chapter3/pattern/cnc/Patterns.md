@@ -1,3 +1,5 @@
+#### [Chapter 3](../../README.md)
+
 # Component-and-Connector Patterns
 
 ## Broker Pattern

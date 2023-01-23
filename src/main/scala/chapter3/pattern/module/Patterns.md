@@ -1,3 +1,5 @@
+#### [Chapter 3](../../README.md)
+
 # 3.1. Module Patterns
 ## Layer Pattern
 TODO
