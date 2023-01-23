@@ -185,3 +185,52 @@
   - Degrade functionality by sending back an incomplete response (i.e., JobRejected).
   - Drop the requests to reduce load.
 - Decrease the probability of enqueuing in the Managed Queue with growing queue size.
+
+# 4.4 Fault Tolerance
+
+## Circuit Breaker Pattern
+
+> _Prevent cascading failures by preventing requests to external services that begin to fail._
+
+### Applicability
+
+- Deliberately break up the flow of requests from one component to the next when the recipient is overloaded or otherwise failing.
+  - Give the recipient some breathing room to recover from possible load-induced failures.
+  - Let the sender decide that requests should fail instead of wasting time waiting for negative replies.
+
+## Fault Tolerance: infrastructure desiderata
+
+### Support Component Compartmentalisation
+
+- The infrastructure needs to provide a means to compartmentalise its components so faulty components are isolated from others and do not escalate to a total system crash.
+
+### Support Suspension of Component Interactions
+
+- When a component fails, you’d like all calls to the component to be suspended until the component is fixed or replaced, so that when it is, the new component can continue the work without dropping a beat.
+- The call that was handled at the time of failure should also not disappear, it could be critical to your recovery, and further, it might contain information that’s critical to understanding why the component failed. You might want to retry the call when you’re sure that there was another reason for the fault.
+
+### Provide Component Lifecycle Management
+
+- A faulty component needs to be isolated, and if it can't recover, it should be terminated and removed from the system or re-initialized with a correct starting state. Some defined lifecycle will need to exist to start, restart, and terminate the component.
+
+### Enable Separation of Concerns
+
+- It would be great if the fault-recovery code could be separated from the normal processing code. Fault recovery is a cross-cutting concern in the normal flow. A clear separation between normal flow and recovery flow will simplify development and maintenance.
+
+## Actor Supervision
+
+- Akka implements supervision:
+  - Supervisors wrap message processing behavior and catch exceptions.
+  - Mailbox for crashed actors is suspended until the supervisor has decided what to do with.
+    - They only decide on the fate of a crashed actor based on the cause of the crash!
+  - Message processing behavior contains normal processing logic, no error handling or fault recovery logic.
+
+## Fault Recovery Options for Supervisors
+
+- **Restart**
+  - The crashed actor must be re-created. It will continue processing messages after its restart.
+  - Possible because the rest of the application communicates with the actor through its address, an ActorRef.
+- **Resume**
+  - The same actor instance should continue processing messages; the crash is ignored.
+- **Stop**
+  - The actor must be terminated. It will no longer take part in processing messages.:w
