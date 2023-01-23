@@ -23,6 +23,17 @@
 
 ## Model-View-Controller
 
+- **Strengths**
+
+  - Provides multiple representations of the same data that are kept in sync.
+  - Decreases coupling by separating the user interface concerns from the application logic concerns.
+
+- **Weaknesses**
+
+  - Rarely worth it for simple UIs.
+  - Seperates input & output in 2 different modules, difficult for toolkits that combine these widgets.
+
+
 ## Service-Oriented Architecture Pattern
 
 - ## Overview:
