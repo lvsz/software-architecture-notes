@@ -107,8 +107,7 @@
   - Workaround to speed up recovery for larger journals:
     - persist intermediate snapshots of the domain object's state together with the event sequence number they are based on. However, changes to the implementation details of the domain object might invalidate older snapshots!
     - state of a shopping cart may fluctuate, but the total number of associated events should not exceed hundreds
-- Not applicable when it is desirable to delete events from the
-  journal. Events are supposed to represent immutable facts.
+- Not applicable when it is desirable to delete events from the journal. Events are supposed to represent immutable facts.
 
 ### **Advantages**
 
@@ -126,5 +125,63 @@
 
 - Unfamiliar model
 - Often leads to eventual consistency
-- Versioning of events (event schema changes)
-- Deletion of events (e.g. for legal reasons: EU's GDPR)
+  - An eventually consistent system can return any value before it converges.
+- **Versioning of events** (event schema changes)
+  - Difficult to make changes when they conflict with persisted data.
+- **Deletion of events** (e.g. for legal reasons: EU's GDPR, right to be forgotten)
+  - There are workarounds, like replacing the deleted event with a hash that can't be reconstructed.
+
+# 4.3 Flow Control Patterns
+
+> _Have the consumer ask the producer for batches of data._
+
+## Pull Pattern
+
+### Applicability
+
+- Prevent an arbitrarily fast producer from overwhelming a slow consumer by propagating back pressure from consumer to producer.
+- Works well for scenarios with an elastic worker pool that processes incoming requests that are self-contained and that do not depend on local state maintained on each worker node.
+
+![pull-pattern](../../resources/png/pull-pattern.png)
+
+### Pull Pattern: compared to up-front work division
+
+- If manager distributed all jobs over the workers upfront
+  - Work items would accumulate in the workers’ mailboxes, risking out-of-memory errors.
+  - Even upfront distribution would result in uneven execution times, with some worker finishing later than others. CPU utilisation would be suboptimal.
+- Pull pattern enables the system to adapt to the relative speed of producer and consumer
+
+  - When the producer is faster than the consumer, the producer will run out of demand from the consumer. The system runs in “pull” mode, with the consumer pulling work items from the producer with each request it makes.
+  - When the producer is slower than the consumer, the consumer will always have demand outstanding. The system runs in “push” mode, where the producer never waits for a work request from the consumer.
+  - **Under changing load, the system automatically switches between both modes.**
+
+  ## Managed Queue Pattern
+
+  > _Manage an explicit input queue and react to its fill level._
+
+### Applicability
+
+- When the Pull pattern is applied across a chain of processing components, avoid “stuttering” by employing queues as message buffers during periods in which back pressure signals travel through the system.
+- Managed queues are predominantly used at the boundaries of the messaging system, where it has to interact with components that do not participate in back pressure.
+- Managed queues can also be used to monitor and steer performance of a messaging system.
+
+![managed-queue](../../resources/png/managed-queue.png)
+
+### Advanteges
+
+- **Makes back pressure explicit**:
+- Back pressure corresponds to the fill level of the queue that is filled with external requests and emptied based on workers' demands!
+- Queue is used as a smoothing buffer, rejecting additional requests when the queue is full. Ensures service responsiveness while placing an upper bound on the size of the work queue.
+- Could also spin up additional workers when a high-water mark is reached, adapting the worker pool elastically to the current service usage.
+- Could also monitor rate of change, taking sustained growth as a signal to enlarge the pool and sustained decrease as a signal to shrink again.
+
+## Drop Pattern
+
+> _“Dropping requests is preferable to failing uncontrollably._
+
+### Applicability
+
+- Prevent a system from crawling to an uncontrolled halt when a system overload exhausts resources. Protect responsiveness by including two overload reactions:
+  - Degrade functionality by sending back an incomplete response (i.e., JobRejected).
+  - Drop the requests to reduce load.
+- Decrease the probability of enqueuing in the Managed Queue with growing queue size.
