@@ -2,7 +2,9 @@ name := "software-architecture-notes"
 
 version := "1.0"
 
-scalaVersion := "3.2.1"
+ThisBuild / scalaVersion := "3.2.1"
+
+ThisBuild / logLevel := Level.Warn
 
 val akkaVersion = "2.7.0"
 
