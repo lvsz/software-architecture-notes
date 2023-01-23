@@ -4,20 +4,19 @@ import akka.NotUsed
 import akka.actor.typed.{ActorRef, ActorSystem, Behavior, Terminated}
 import akka.actor.typed.scaladsl.{AbstractBehavior, ActorContext, Behaviors}
 import org.slf4j.{Logger, LoggerFactory}
+// import chapter4.pattern.messaging.{Request, Response}
 
-implicit object Protocol:
-  case class Request(req: String, replyTo: ActorRef[Response])
-  case class Response(result: String)
-
-/** Requester actor
- * requester receives a Response as context
- */
+/** Requester actor, implemented by extending AbstractBehavior, which requires
+  * overriding the onMessage method, and passing its context as a construction
+  * parameter. Subclasses of AbstractBehavior need to be created through
+  * Behaviors.setup. ActorContext provides access to its own identity.
+  */
 class Requester(
-    context: ActorContext[Protocol.Response],
-    responder: ActorRef[Protocol.Request]
-) extends AbstractBehavior[Protocol.Response](context):
-  import Protocol._
+    context: ActorContext[Response],
+    responder: ActorRef[Request]
+) extends AbstractBehavior[Response](context):
   responder ! Request("hello", context.self)
+  // process an incoming message and return the next behavior (unchanged here)
   override def onMessage(message: Response): Behavior[Response] =
     message match {
       case Response(result) =>
@@ -25,15 +24,16 @@ class Requester(
         Behaviors.same
     }
 
+// Companion object, creating an Requester actor if given a Responder actor
 object Requester:
-  import Protocol.*
   // requester knows address of responder in advance
   def apply(responder: ActorRef[Request]): Behavior[Response] =
     Behaviors.setup(context => new Requester(context, responder))
 
-class Responder(context: ActorContext[Protocol.Request])
-    extends AbstractBehavior[Protocol.Request](context):
-  import Protocol.*
+/** Responder actor
+  */
+class Responder(context: ActorContext[Request])
+    extends AbstractBehavior[Request](context):
   override def onMessage(message: Request): Behavior[Request] =
     message match {
       case Request(req: String, replyTo: ActorRef[Response]) =>
@@ -43,7 +43,7 @@ class Responder(context: ActorContext[Protocol.Request])
     }
 
 object Responder:
-  def apply(): Behavior[Protocol.Request] =
+  def apply(): Behavior[Request] =
     Behaviors.setup(context => new Responder(context))
 
 object Example:
@@ -55,5 +55,7 @@ object Example:
     }
   @main
   def runRequestResponse() =
-    LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME).debug("prevent slf4j noise")
+    LoggerFactory
+      .getLogger(Logger.ROOT_LOGGER_NAME)
+      .debug("prevent slf4j noise")
     ActorSystem(Example(), "RequestResponseExample")
