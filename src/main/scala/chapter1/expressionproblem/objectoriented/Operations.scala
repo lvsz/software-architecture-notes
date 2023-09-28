@@ -38,7 +38,7 @@ object Operations:
     type ExpressionType <: InfixExpression
     trait InfixExpression extends Expression:
       def infixNotation: String
-  
+
   trait InfixForFullLang extends FullLang with InfixOp:
     trait InfixConst extends Const with InfixExpression:
       def infixNotation: String = v.toString
