@@ -1,12 +1,16 @@
+#### [Software Architectures](../../../../README.md)
+
 # 3. Architectural Patterns
+
 Architectural patterns establish a relation between:
+
 - **a context**
-  * recurring, real-word situation
+  - recurring, real-word situation
 - **a problem**
-  * the problem, **_appropriately generalized_**, that arises from the context
+  - the problem, **_appropriately generalized_**, that arises from the context
 - **a solution**
-  * a **successful architectural resolution** to the problem, **_appropriately abstracted_**.
-  * determined and described by:
+  - a **successful architectural resolution** to the problem, **_appropriately abstracted_**.
+  - determined and described by:
     - a set of element types
     - a set of interaction mechanisms or connectors
     - a topological layout of the components

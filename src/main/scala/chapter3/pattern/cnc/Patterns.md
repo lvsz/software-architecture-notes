@@ -1,3 +1,5 @@
+#### [Chapter 3](../../README.md)
+
 # Component-and-Connector Patterns
 
 ## Broker Pattern
@@ -14,12 +16,23 @@
   - A broker may be a target for security attacks.
     - Man-in-the-middle attack.
   - A broker may be difficult to test.
-  - **MOST importantly**:  
+  - **MOST importantly**:
     susceptible to the fallacy of transparent distribution.
     - by disguising remote procedure calls as local ones, the user might not account for any issues associated with communicating over a network, e.g. latency and network failure.
     - cf. REST calls which are unmistakable for local calls when used by developers, and are more likely to get appropriate error and exception handling.
 
 ## Model-View-Controller
+
+- **Strengths**
+
+  - Provides multiple representations of the same data that are kept in sync.
+  - Decreases coupling by separating the user interface concerns from the application logic concerns.
+
+- **Weaknesses**
+
+  - Rarely worth it for simple UIs.
+  - Seperates input & output in 2 different modules, difficult for toolkits that combine these widgets.
+
 
 ## Service-Oriented Architecture Pattern
 
