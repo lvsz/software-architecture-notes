@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg version="2" xmlns="http://www.w3.org/2000/svg"
+     width="368" height="410"
+     style="font:16px Arial,Helvetica,sans-serif;text-anchor:middle;">
+  <defs>
+    <polygon id="uarrow" points="0,0 5,12 1,12 1,180 -1,180 -1,12 -5,12 0,0" />
+    <use id="darrow" href="#uarrow" transform="matrix(1,0,0,-1,0,180)" />
+    <use id="b60darrow" href="#darrow" transform="rotate(-60)" fill="black" />
+    <use id="u60darrow" href="#darrow" transform="rotate(-120)" fill="black" />
+    <rect id="bg" width="160" height="240"
+          stroke-width="2" fill="rgba(200,200,200,0.5)" />
+    <rect id="base" width="120" height="190" stroke-width="1" />
+    <text id="dots" x="60" font-size="24" textLength="84">
+      ..............
+    </text>
+    <g id="twolines">
+      <use href="#dots" />
+      <use href="#dots" y="18" />
+    </g>
+    <g id="fourlines">
+      <use href="#twolines" />
+      <use href="#twolines" y="36" />
+    </g>
+    <g id="mod">
+      <use href="#bg" />
+      <g transform="translate(20, 30)">
+        <use href="#base" fill="rgba(120,120,120,0.75)" x="8" y="10" />
+        <use href="#base" fill="white" stroke="black" />
+        <use href="#fourlines" y="36" />
+        <use href="#fourlines" y="108" />
+      </g>
+    </g>
+  </defs>
+  <rect width="550" height="410" fill="rgba(255,255,255,0.5)" />
+  <g transform="matrix(0.75 0 0 0.75 20 10)">
+    <g transform="translate(275,140)">
+      <use href="#mod" />
+      <text x="80" y="22">Logger</text>
+    </g>
+    <use href="#mod" />
+    <text x="80" y="22">Class1.scala</text>
+    <g transform="translate(230,140)">
+      <text transform="rotate(30)">log()</text>
+    </g>
+    <g transform="translate(140,100)">
+      <use href="#b60darrow" />
+      <use href="#b60darrow" y="20" />
+      <use href="#b60darrow" y="40" />
+    </g>
+    <g transform="translate(0,280)">
+      <use href="#mod" />
+      <text x="80" y="22">ClassN.scala</text>
+      <g transform="translate(230,110)">
+        <text transform="rotate(-30)">log()</text>
+      </g>
+      <g transform="translate(140,100)">
+        <use href="#u60darrow" />
+        <use href="#u60darrow" y="20" />
+        <use href="#u60darrow" y="40" />
+      </g>
+    </g>
+    <line x1="80" x2="80" y1="220" y2="289" stroke="black"
+          stroke-width="2.5" stroke-dasharray="2.5 4.5" />
+  </g>
+</svg>

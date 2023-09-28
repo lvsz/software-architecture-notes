@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="2" xmlns="http://www.w3.org/2000/svg"
+     width="120" height="140" viewBox="-60 -5 120 140"
+     style="font:16px Arial,Helvetica,sans-serif;text-anchor:middle;">
+  <defs>
+    <rect id="modbg" x="-55" width="110" height="30" fill="rgb(234,234,234)"
+          opacity="0.85" stroke="black" stroke-width="2" />
+    <polygon id="darr" transform="translate(0,30)"
+             points="0,19 5,11 1,13 1,0 -1,0 -1,13 -5,11" />
+    <text id="usr" font-size="14" x="24" y="44">users</text>
+  </defs>
+  <rect x="-60" y="-5" height="140" width="120" fill="rgba(255,255,255,0.5)" />
+  <use href="#modbg" />
+  <text y="21">API</text>
+  <use href="#darr" />
+  <use href="#usr" />
+  <g transform="translate(0,50)">
+    <use href="#modbg" />
+    <text y="21">Domain</text>
+    <use href="#darr" />
+    <use href="#usr" />
+    <g transform="translate(0, 50)">
+      <use href="#modbg" />
+      <text y="21">Infrastructure</text>
+    </g>
+  </g>
+</svg>
